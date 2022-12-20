@@ -12,5 +12,10 @@
     <string name="register">Register</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password_again">Password Again</string>
+    <string name="citizen_id">Citizen ID</string>
+    <string name="agree_terms_conditions">I\'ve read the terms and conditions, I\'m accepting them.</string>
+    <string name="already_have_an_account">I already have an account</string>
 
 </resources>
