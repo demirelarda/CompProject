@@ -4,4 +4,9 @@ import androidx.fragment.app.Fragment
 import com.acm431.complaintmanagement.R
 
 class LogInFragment : Fragment(R.layout.fragment_login){
+
+
+
+
+
 }
