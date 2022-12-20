@@ -202,17 +202,16 @@
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/register_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/app_button_background"
-            android:layout_marginTop="30dp"
-            android:textColor="@color/white"
             android:text="@string/register"
-            android:textSize="16sp"
-            >
-        </androidx.appcompat.widget.AppCompatButton>
+            android:textColor="@color/white"
+            android:textSize="16sp"></androidx.appcompat.widget.AppCompatButton>
 
         <TextView
             android:id="@+id/tv_already_button"
