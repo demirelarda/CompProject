@@ -39,7 +39,7 @@ class LogInFragment : Fragment(R.layout.fragment_login){
         super.onViewCreated(view, savedInstanceState)
         login_button.setOnClickListener {
             val email = et_email.text.toString()
-            println("test mail= "+email)
+            println("test mail = "+email)
 
         }
 
