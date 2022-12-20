@@ -1,0 +1,7 @@
+package com.acm431.complaintmanagement.view.complaintviews
+
+import androidx.fragment.app.Fragment
+import com.acm431.complaintmanagement.R
+
+class ProfileFragment: Fragment(R.layout.fragment_profile) {
+}
