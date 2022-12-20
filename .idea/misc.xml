@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/yadem/Desktop/compManagement/app/src/main/res/drawable/app_button_background.xml" value="0.1195" />
+        <entry key="..\:/Users/yadem/Desktop/compManagement/app/src/main/res/drawable/app_button_background_white.xml" value="0.1195" />
+        <entry key="..\:/Users/yadem/Desktop/compManagement/app/src/main/res/layout/activity_complaint.xml" value="0.223731884057971" />
+        <entry key="..\:/Users/yadem/Desktop/compManagement/app/src/main/res/layout/fragment_add_complaint.xml" value="0.223731884057971" />
+        <entry key="..\:/Users/yadem/Desktop/compManagement/app/src/main/res/layout/fragment_admin_complaints.xml" value="0.223731884057971" />
+        <entry key="..\:/Users/yadem/Desktop/compManagement/app/src/main/res/layout/fragment_login.xml" value="0.223731884057971" />
         <entry key="..\:/Users/yadem/Desktop/complaintManagement-master/app/src/main/res/layout/activity_complaint.xml" value="0.223731884057971" />
         <entry key="..\:/Users/yadem/Desktop/complaintManagement-master/app/src/main/res/layout/activity_main.xml" value="0.223731884057971" />
         <entry key="..\:/Users/yadem/Desktop/complaintManagement-master/app/src/main/res/layout/fragment_add_complaint.xml" value="0.223731884057971" />
