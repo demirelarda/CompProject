@@ -23,6 +23,8 @@ class LogInFragment : Fragment(R.layout.fragment_login){
             val action = LogInFragmentDirections.actionLogInFragmentToSignUpFragment()
             Navigation.findNavController(it).navigate(action)
         }
+
+
     }
 
     override fun onCreateView(
@@ -31,6 +33,16 @@ class LogInFragment : Fragment(R.layout.fragment_login){
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_login,container,false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        login_button.setOnClickListener {
+            val email = et_email.text.toString()
+            println(email)
+        }
+
+
     }
 
 
