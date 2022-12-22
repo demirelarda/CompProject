@@ -26,9 +26,6 @@ class ComplaintActivity : AppCompatActivity() {
             }
             true
         }
-
-
-
     }
 
 
@@ -40,8 +37,4 @@ class ComplaintActivity : AppCompatActivity() {
         fragmentTransaction.commit()
 
     }
-
-
-
-
 }
