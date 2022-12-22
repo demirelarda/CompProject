@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/home"
-        android:id="@+id/home"
-        android:icon="@drawable/ic_baseline_home_24"
-        />
+
+
+
+
+    <item android:title="@string/notifications"
+        android:id="@+id/notifications"
+        android:icon="@drawable/ic_baseline_message_24"/>
 
     <item android:title="@string/add_comp"
         android:id="@+id/add_complaint"
         android:icon="@drawable/ic_baseline_photo_camera_24"
         />
-
-    <item android:title="@string/notifications"
-        android:id="@+id/notifications"
-        android:icon="@drawable/ic_baseline_message_24"/>
 
     <item android:title="@string/profile"
         android:id="@+id/profile"
