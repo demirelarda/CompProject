@@ -17,7 +17,7 @@ class ComplaintActivity : AppCompatActivity() {
         if(intent.hasExtra("toProfile")){
             println("profile test")
             replaceFragment(ProfileFragment())
-            bottomNavigationView.getMenu().getItem(2).setChecked(true)
+            bottomNavigationView.getMenu().getItem(0).setChecked(true)
         }
 
         bottomNavigationView.setOnItemSelectedListener {
