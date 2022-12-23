@@ -12,103 +12,99 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/user_image_placeholder"
-            app:civ_border_color="#FF000000"
-            app:civ_border_width="2dp"
-            app:layout_anchor="@+id/cardView2"
-            app:layout_anchorGravity="top|center">
-        </de.hdodenhof.circleimageview.CircleImageView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            app:cardCornerRadius="16dp">
-
+            android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_marginTop="2dp"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/welcome"
-                    android:gravity="center"
-                    android:textSize="18sp">
-                </TextView>
-                <TextView
-                    android:id="@+id/tv_name_surname_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text="Name Surname"
-                    android:gravity="center"
-                    android:textSize="22sp"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textStyle="bold">
-                </TextView>
-                <TextView
-                    android:layout_marginTop="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/have_a_problem"
-                    android:gravity="center"
-                    android:textSize="18sp">
-                </TextView>
+                    android:layout_height="250dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="20dp"
+                    app:cardCornerRadius="16dp">
 
-                <androidx.appcompat.widget.AppCompatButton
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginTop="60dp">
+
+                        <TextView
+                            android:layout_marginTop="2dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/welcome"
+                            android:gravity="center"
+                            android:textSize="18sp">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/tv_name_surname_profile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Name Surname"
+                            tools:text="Name Surname"
+                            android:gravity="center"
+                            android:textSize="22sp"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textStyle="bold">
+                        </TextView>
+                        <TextView
+                            android:layout_marginTop="15dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/have_a_problem"
+                            android:gravity="center"
+                            android:textSize="18sp">
+                        </TextView>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_marginTop="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:text="@string/report_a_problem"
+                            android:textColor="@color/white"
+                            android:background="@drawable/app_button_background"
+                            android:layout_gravity="center"
+                            android:padding="5dp"
+                            >
+                        </androidx.appcompat.widget.AppCompatButton>
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="-300dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/user_image_placeholder"
+                    app:civ_border_color="@color/app_yellow"
+                    app:civ_border_width="2dp"
+                    app:layout_anchor="@+id/cardView2"
+                    app:layout_anchorGravity="top|center"
+                    android:elevation="2dp">
+                </de.hdodenhof.circleimageview.CircleImageView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginTop="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:text="@string/report_a_problem"
-                    android:textColor="@color/white"
-                    android:background="@drawable/app_button_background"
-                    android:layout_gravity="center"
-                    android:padding="5dp"
-                    >
-                </androidx.appcompat.widget.AppCompatButton>
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/notifications"
-                android:textColor="@color/white"
-                android:textSize="16sp">
-            </TextView>
-            <TextView
-                android:layout_width="fill_parent"
-                android:gravity="end"
-                android:layout_height="wrap_content"
-                android:text="@string/see_all"
-                android:textColor="@color/white"
-                android:textSize="16sp">
-            </TextView>
-        </LinearLayout>
+        </FrameLayout>
 
         <TextView
             android:id="@+id/tv_no_problems_msg_profile"
@@ -122,23 +118,21 @@
             android:visibility="visible"
             >
         </TextView>
-    </LinearLayout>
-    </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/fl_rv_complaint_holder_profile"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_profile_complaints"
+        <FrameLayout
+            android:id="@+id/fl_rv_complaint_holder_profile"
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </androidx.recyclerview.widget.RecyclerView>
-    </FrameLayout>
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_profile_complaints"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </androidx.recyclerview.widget.RecyclerView>
+        </FrameLayout>
     </LinearLayout>
 
 </ScrollView>
