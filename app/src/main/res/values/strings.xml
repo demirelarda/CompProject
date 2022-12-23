@@ -17,5 +17,10 @@
     <string name="citizen_id">Citizen ID</string>
     <string name="agree_terms_conditions">I\'ve read the terms and conditions, I\'m accepting them.</string>
     <string name="already_have_an_account">I already have an account</string>
+    <string name="welcome">Welcome</string>
+    <string name="have_a_problem">Do You Have A Problem?</string>
+    <string name="report_a_problem">Report A Problem</string>
+    <string name="see_all">See All</string>
+    <string name="have_no_problems">You Have No Problems Yet.</string>
 
 </resources>

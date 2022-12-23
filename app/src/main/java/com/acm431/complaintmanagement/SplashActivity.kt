@@ -42,7 +42,7 @@ class SplashActivity : AppCompatActivity() {
 
     private suspend fun wait() {
         delay(2000L)
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, ComplaintActivity::class.java)
         startActivity(intent)
         finish()
     }

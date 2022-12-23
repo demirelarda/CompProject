@@ -32,4 +32,6 @@
     <color name="colorOrderStatusDelivered">#8BC34A</color>
     <color name="app_yellow">#e9bd00</color>
 
+    <color name="transparent">#80000000</color>
+
 </resources>
