@@ -5,7 +5,18 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.complaintviews.AdminComplaints"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/splash_background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notifications"
+        android:textColor="@color/white"
+        android:layout_margin="20dp"
+        android:textSize="30sp">
+
+    </TextView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,15 +38,16 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="27dp"
+                android:layout_height="40dp"
                 app:tabGravity="fill"
                 app:tabIndicatorColor="?attr/colorAccent"
                 app:tabIndicatorGravity="stretch"
                 app:tabMaxWidth="0dp"
                 app:tabMode="fixed"
-                app:tabSelectedTextColor="@android:color/white"
+                app:tabSelectedTextColor="@android:color/black"
                 app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-                app:tabTextColor="?attr/colorPrimary">
+                app:tabTextColor="@color/colorDarkGrey"
+                >
             </com.google.android.material.tabs.TabLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -43,6 +55,7 @@
     </LinearLayout>
 
     <androidx.viewpager2.widget.ViewPager2
+        android:layout_marginTop="20dp"
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

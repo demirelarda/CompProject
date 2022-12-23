@@ -22,7 +22,6 @@ class ProfileComplaintsAdapter(private val context: Context, private var list: A
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
         holder.itemView.tv_address_date_profile_complaint_row.background.alpha = 80
-        holder.itemView.divider_view.background.alpha = 80
         holder.itemView.tv_complaint_name_profile_row.text = model.content
         holder.itemView.tv_urgency_profile_row.text = model.urgency
         holder.itemView.tv_row_complaint_status.text = model.status //TODO : Change the background color according to the status

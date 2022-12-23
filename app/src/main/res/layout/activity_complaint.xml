@@ -14,7 +14,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav"/>
+        app:menu="@menu/bottom_nav"
+        app:itemTextColor="@color/bottom_nav"
+        app:itemIconTint="@color/bottom_nav"/>
 
     <FrameLayout
         android:id="@+id/frameLayout"

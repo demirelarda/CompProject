@@ -103,10 +103,10 @@
     </androidx.cardview.widget.CardView>
 
     <View
-        android:id="@+id/divider_view"
+        android:id="@+id/divider_view_profile_row"
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@color/transparent">
+        android:alpha="0.0">
     </View>
 
 </LinearLayout>
