@@ -114,14 +114,12 @@
             android:id="@+id/tv_no_problems_msg_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
             android:text="@string/have_no_problems"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:layout_gravity="center"
-            android:layout_marginTop="100dp"
-            android:visibility="visible"
-            >
-        </TextView>
+            android:visibility="visible"></TextView>
     </LinearLayout>
     </FrameLayout>
 
