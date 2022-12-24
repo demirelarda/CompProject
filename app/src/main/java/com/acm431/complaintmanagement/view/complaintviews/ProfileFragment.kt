@@ -33,13 +33,13 @@ class ProfileFragment: Fragment(R.layout.fragment_profile) {
 
      /*   //Example Complaints (Dummy Data)
         val exampleComplaint = Complaint("a","Kırık Yol","a","Kadıköy/Atatürk Mahallesi",
-            LocalDateTime.now(),"Ekipler Yönlendirildi","Acil")
+            LocalDateTime.now(),"Ekipler Yönlendirildi","Acil","John Doe")
         val exampleComplaint2 = Complaint("a","Kırık Yol","a","Kadıköy/Atatürk Mahallesi",
-            LocalDateTime.now(),"Ekipler Yönlendirildi","Acil")
+            LocalDateTime.now(),"Ekipler Yönlendirildi","Acil","John Doe")
         val exampleComplaint3 = Complaint("a","Kırık Yol","a","Kadıköy/Atatürk Mahallesi",
-            LocalDateTime.now(),"Ekipler Yönlendirildi","Acil")
+            LocalDateTime.now(),"Ekipler Yönlendirildi","Acil","John Doe")
         val exampleComplaint4 = Complaint("a","Kırık Yol","a","Kadıköy/Atatürk Mahallesi",
-            LocalDateTime.now(),"Ekipler Yönlendirildi","Acil")
+            LocalDateTime.now(),"Ekipler Yönlendirildi","Acil","John Doe")
         complaintList = ArrayList()
         complaintList.add(exampleComplaint)
         complaintList.add(exampleComplaint2)

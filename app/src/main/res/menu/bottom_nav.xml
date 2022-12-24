@@ -6,7 +6,8 @@
 
     <item android:title="@string/profile"
         android:id="@+id/profile"
-        android:icon="@drawable/ic_baseline_account_circle_24"/>
+        android:icon="@drawable/ic_baseline_account_circle_24"
+    />
 
     <item android:title="@string/add_comp"
         android:id="@+id/add_complaint"
