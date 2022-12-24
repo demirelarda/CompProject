@@ -78,6 +78,12 @@ class SignUpFragment :BaseFragment() {
 
         })
 
+        viewModel.registerError.observe(viewLifecycleOwner, Observer { error->
+            if(error){
+                showErrorSnackBar(getString(R.string.an_error_occured),true)
+            }
+        })
+
     }
 
     override fun onCreateView(

@@ -11,4 +11,5 @@ data class Complaint(
     //val date : LocalDateTime = LocalDateTime.now(),
     val status: String= "",
     val urgency: String= "",
+    val userName: String = ""
 )

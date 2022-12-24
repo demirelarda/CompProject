@@ -23,5 +23,6 @@
     <string name="see_all">See All</string>
     <string name="have_no_problems">You Have No Problems Yet.</string>
     <string name="please_wait">Please Wait</string>
+    <string name="an_error_occured">An Error Occured</string>
 
 </resources>

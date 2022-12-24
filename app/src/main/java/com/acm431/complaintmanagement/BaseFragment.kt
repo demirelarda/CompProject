@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.progress_bar.*
 
 open class BaseFragment : Fragment() {
@@ -36,6 +38,30 @@ open class BaseFragment : Fragment() {
 
     fun hideProgressBar() {
         progressDialog.dismiss()
+    }
+
+    fun showErrorSnackBar(message: String, errorMessage: Boolean) {
+        val snackBar =
+            Snackbar.make(requireActivity().findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
+
+        val snackBarView = snackBar.view
+
+        if (errorMessage) {
+            snackBarView.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.colorSnackBarError
+                )
+            )
+        }else{
+            snackBarView.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.colorSnackBarSuccess
+                )
+            )
+        }
+        snackBar.show()
     }
 
 

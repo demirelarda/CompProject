@@ -24,4 +24,5 @@
     <string name="see_all">Tümünü Gör</string>
     <string name="have_no_problems">Henüz bir şikayetiniz yok.</string>
     <string name="please_wait">Lütfen Bekleyin</string>
+    <string name="an_error_occured">Bir Hata Oluştu</string>
 </resources>

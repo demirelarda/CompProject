@@ -106,7 +106,8 @@
             android:layout_marginTop="100dp"
             android:text="@string/have_no_problems"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="18sp">
+        </TextView>
 
 
         <FrameLayout
