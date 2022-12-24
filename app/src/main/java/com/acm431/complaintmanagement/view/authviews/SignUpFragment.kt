@@ -59,9 +59,8 @@ class SignUpFragment :BaseFragment() {
                 identityNumber = citizenID
             )
 
-            if(!(cb_terms_and_condition.isChecked && username.isEmpty() && email.isEmpty() && password.isEmpty() && citizenID.isEmpty())){
+            if(!(cb_terms_and_condition.isChecked && username.isEmpty() && email.isEmpty() && password.isEmpty() && citizenID.isEmpty()))
                 viewModel.register(user)
-            }
             else if (passAgain != password)
                 makeShortTost("Girdiğiniz şifreler uyuşmuyor")
             else

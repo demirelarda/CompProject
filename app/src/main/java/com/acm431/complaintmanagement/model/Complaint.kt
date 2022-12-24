@@ -4,12 +4,11 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 
 data class Complaint(
-    val complaintID: String,
-    val content : String,
-    val imagePath: String,
-    val location : String,
-    val date : LocalDateTime = LocalDateTime.now(),
-    val status: String,
-    val urgency: String,
-    val userName: String,
+    var complaintID: String = "",
+    val content : String= "",
+    val imagePath: String= "",
+    val location : String= "",
+    //val date : LocalDateTime = LocalDateTime.now(),
+    val status: String= "",
+    val urgency: String= "",
 )
