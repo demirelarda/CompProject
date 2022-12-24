@@ -1,9 +1,7 @@
 package com.acm431.complaintmanagement.database
 
-class FirestoreDB {
+import androidx.lifecycle.MutableLiveData
 
-
-
-
-
+object GlobalValues {
+    val stringValue = MutableLiveData<String>()
 }

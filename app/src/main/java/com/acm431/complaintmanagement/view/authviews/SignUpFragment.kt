@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -15,10 +14,10 @@ import com.acm431.complaintmanagement.model.User
 import com.acm431.complaintmanagement.viewmodel.AuthViewModel
 import kotlinx.android.synthetic.main.fragment_signup.*
 
-class SignUpFragment :BaseFragment() {
-    private lateinit var viewModel : AuthViewModel
+class SignUpFragment : BaseFragment() {
+    private lateinit var viewModel: AuthViewModel
 
-    fun makeShortTost(message : String) {
+    private fun makeShortTost(message: String) {
         Toast.makeText(
             this.context,
             message,
@@ -28,9 +27,7 @@ class SignUpFragment :BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
-
     }
 
     override fun onResume() {
@@ -40,8 +37,15 @@ class SignUpFragment :BaseFragment() {
             val action = SignUpFragmentDirections.actionSignUpFragmentToLogInFragment()
             Navigation.findNavController(it).navigate(action)
         }
-
     }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? = inflater.inflate(R.layout.fragment_signup, container, false)
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -59,39 +63,34 @@ class SignUpFragment :BaseFragment() {
                 identityNumber = citizenID
             )
 
-            if(!(cb_terms_and_condition.isChecked && username.isEmpty() && email.isEmpty() && password.isEmpty() && citizenID.isEmpty()))
+            if (!(cb_terms_and_condition.isChecked && username.isEmpty() && email.isEmpty()//isChecked hata veriyor
+                        && password.isEmpty() && passAgain.isEmpty() && citizenID.isEmpty()))
+            {
                 viewModel.register(user)
+                if (viewModel.registrationSucces.value!!)
+                    makeShortTost("Hesabınız oluşturuldu !")
+            }
             else if (passAgain != password)
                 makeShortTost("Girdiğiniz şifreler uyuşmuyor")
             else
-                makeShortTost("Lütfen boş bırakmadığınız alan olduğundan emin olun ve koşulları kabul edin")// her zaman bu satıra uğruyor ????
+                makeShortTost("Lütfen boş bıraktığınız alan olmadığından emin olun ve koşulları kabul edin")
 
         }
 
-        viewModel.registerLoading.observe(viewLifecycleOwner, Observer { loading->
-            if(loading){
+        viewModel.registerLoading.observe(viewLifecycleOwner, Observer { loading ->
+            if (loading) {
                 showProgressBar(getString(R.string.please_wait))
-            }
-            else{
+            } else {
                 hideProgressBar()
             }
 
         })
 
-        viewModel.registerError.observe(viewLifecycleOwner, Observer { error->
-            if(error){
-                showErrorSnackBar(getString(R.string.an_error_occured),true)
+        viewModel.registerError.observe(viewLifecycleOwner, Observer { error ->
+            if (error) {
+                showErrorSnackBar(getString(R.string.an_error_occured), true)
             }
         })
-
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_signup, container, false)
     }
 
 }
