@@ -28,7 +28,6 @@ class NotificationsAdapter(private val context: Context, private var list: Array
         holder.itemView.tv_user_name_surname_notifications_row.text = model.userName
         holder.itemView.iv_user_pp_notifications_row.setImageResource(R.drawable.user_image_placeholder)
         holder.itemView.iv_notifications_complaint_image_row.setImageResource(R.drawable.ic_baseline_photo_camera_24)
-
     }
 
     override fun getItemCount(): Int {

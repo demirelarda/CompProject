@@ -166,6 +166,7 @@
                         android:padding="@dimen/et_padding"
                         android:textColor="@color/colorPrimaryText"
                         android:textSize="@dimen/et_textSize"
+                        android:maxLength="11"
                          />
                 </com.google.android.material.textfield.TextInputLayout>
 

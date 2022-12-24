@@ -13,12 +13,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.acm431.complaintmanagement.BaseFragment
 import com.acm431.complaintmanagement.ComplaintActivity
 import com.acm431.complaintmanagement.R
 import com.acm431.complaintmanagement.viewmodel.AuthViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
 
-class LogInFragment : Fragment(R.layout.fragment_login) {
+class LogInFragment : BaseFragment() {
     private lateinit var viewModel: AuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,12 +60,26 @@ class LogInFragment : Fragment(R.layout.fragment_login) {
                     val intent = Intent(requireContext(), ComplaintActivity::class.java)
                     intent.putExtra("toProfile",1)
                     startActivity(intent)
+                }
+            })
 
-
-
+            viewModel.loginLoading.observe(viewLifecycleOwner, Observer { loading->
+                if(loading){
+                    showProgressBar(getString(R.string.please_wait))
+                }
+                else{
+                    hideProgressBar()
                 }
             })
         }
 
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_login, container, false)
     }
 }

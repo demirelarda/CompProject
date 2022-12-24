@@ -6,14 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.acm431.complaintmanagement.BaseFragment
 import com.acm431.complaintmanagement.R
 import com.acm431.complaintmanagement.model.User
 import com.acm431.complaintmanagement.viewmodel.AuthViewModel
 import kotlinx.android.synthetic.main.fragment_signup.*
 
-class SignUpFragment : Fragment(R.layout.fragment_signup) {
+class SignUpFragment :BaseFragment() {
     private lateinit var viewModel : AuthViewModel
 
     fun makeShortTost(message : String) {
@@ -66,5 +68,25 @@ class SignUpFragment : Fragment(R.layout.fragment_signup) {
                 makeShortTost("Lütfen boş bırakmadığınız alan olduğundan emin olun ve koşulları kabul edin")// her zaman bu satıra uğruyor ????
 
         }
+
+        viewModel.registerLoading.observe(viewLifecycleOwner, Observer { loading->
+            if(loading){
+                showProgressBar(getString(R.string.please_wait))
+            }
+            else{
+                hideProgressBar()
+            }
+
+        })
+
     }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_signup, container, false)
+    }
+
 }
