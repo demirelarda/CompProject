@@ -1,8 +1,7 @@
 package com.acm431.complaintmanagement
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.view.get
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.acm431.complaintmanagement.view.complaintviews.AddComplaintFragment
 import com.acm431.complaintmanagement.view.complaintviews.AdminComplaints
@@ -26,7 +25,6 @@ class ComplaintActivity : AppCompatActivity() {
                 R.id.notifications -> replaceFragment(AdminComplaints())
                 R.id.profile -> replaceFragment(ProfileFragment())
                 else ->{
-
                 }
             }
             true
