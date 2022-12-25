@@ -63,6 +63,4 @@ open class BaseFragment : Fragment() {
         }
         snackBar.show()
     }
-
-
 }

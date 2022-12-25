@@ -1,30 +1,30 @@
 package com.acm431.complaintmanagement.viewmodel
 
-import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.acm431.complaintmanagement.database.GlobalValues
 import com.acm431.complaintmanagement.model.Complaint
+import com.acm431.complaintmanagement.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
-import kotlin.Exception
 
 class ProfileViewModel : ViewModel() {
 
-    val database = FirebaseFirestore.getInstance()
-    val auth = FirebaseAuth.getInstance()
-    val collectionRef = database
+    private val database = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+    private val collectionRef = database
         .collection("users")
         .document(auth.currentUser!!.email.toString())
         .collection("complaints")
 
     val list = MutableLiveData<ArrayList<Complaint>>()
+    var currentUser = ""
 
     init {
         retrieveData()
+        getUser()
     }
-    fun retrieveData() {
+    private fun retrieveData() {
 
         collectionRef.addSnapshotListener { value, error ->
             try {
@@ -50,4 +50,17 @@ class ProfileViewModel : ViewModel() {
             }
         }
     }
+
+    fun getUser()  {
+        database
+            .collection("users")
+            .document(auth.currentUser!!.email.toString()).get().addOnSuccessListener {
+                if (it != null){
+                    val value = it.getString("username").toString()
+                    GlobalValues.stringValue.value = value
+                    println(GlobalValues.stringValue)
+                }
+            }
+    }
+
 }

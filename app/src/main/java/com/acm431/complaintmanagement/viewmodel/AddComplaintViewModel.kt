@@ -1,6 +1,5 @@
 package com.acm431.complaintmanagement.viewmodel
 
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.acm431.complaintmanagement.model.Complaint
 import com.google.firebase.auth.FirebaseAuth
@@ -8,9 +7,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class AddComplaintViewModel : ViewModel() {
 
-    val database = FirebaseFirestore.getInstance()
-    val auth = FirebaseAuth.getInstance()
-    val collectionRef = database.collection("users")
+    private val database = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+    private val collectionRef = database.collection("users")
         .document(auth.currentUser!!.email.toString())
         .collection("complaints")
 

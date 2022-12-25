@@ -11,20 +11,12 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_admin_complaints.*
 
 
-class AdminComplaints : Fragment() {
+class AdminComplaints : Fragment(R.layout.fragment_admin_complaints) {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_complaints, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

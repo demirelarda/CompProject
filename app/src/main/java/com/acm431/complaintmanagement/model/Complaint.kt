@@ -1,14 +1,13 @@
 package com.acm431.complaintmanagement.model
 
-import java.time.LocalDate
-import java.time.LocalDateTime
+import com.google.firebase.Timestamp
 
 data class Complaint(
     var complaintID: String = "",
     val content : String= "",
     val imagePath: String= "",
     val location : String= "",
-    //val date : LocalDateTime = LocalDateTime.now(),
+    val date : String = Timestamp.now().toDate().toString(),
     val status: String= "",
     val urgency: String= "",
     val userName: String = ""

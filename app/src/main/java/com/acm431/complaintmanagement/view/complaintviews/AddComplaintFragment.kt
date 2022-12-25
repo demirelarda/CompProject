@@ -5,6 +5,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
@@ -12,13 +13,17 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.acm431.complaintmanagement.R
+import com.acm431.complaintmanagement.database.GlobalValues
 import com.acm431.complaintmanagement.model.Complaint
 import com.acm431.complaintmanagement.viewmodel.AddComplaintViewModel
 import com.acm431.complaintmanagement.viewmodel.AuthViewModel
+import com.acm431.complaintmanagement.viewmodel.ProfileViewModel
+import com.google.firebase.auth.FirebaseAuth
 import java.time.LocalDateTime
 
 class AddComplaintFragment : Fragment(R.layout.fragment_add_complaint) {
     private lateinit var viewModel: AddComplaintViewModel
+
 
     fun makeShortTost(message : String) {
         Toast.makeText(
@@ -43,7 +48,16 @@ class AddComplaintFragment : Fragment(R.layout.fragment_add_complaint) {
 
         viewModel = ViewModelProvider(this)[AddComplaintViewModel::class.java]
 
-        val exampleComplaint = Complaint("a","rehwerh","a","İçerenköy/Fındıklı Mahallesi", "Ekipler Yönlendirildi","Acelesi yok")
+
+        val exampleComplaint = Complaint(
+            userName = GlobalValues.stringValue.value.toString(),
+            complaintID = "a",
+            content = "rehwerh",
+            imagePath = "a",
+            location = "İçerenköy/Fındıklı Mahallesi",
+            status = "Ekipler Yönlendirildi",
+            urgency = "Acelesi yok"
+        )
 
         viewModel.save(exampleComplaint)
 
@@ -55,15 +69,15 @@ class AddComplaintFragment : Fragment(R.layout.fragment_add_complaint) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 100) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this.requireActivity(), "Camera Permission Granted", Toast.LENGTH_SHORT).show()
+                makeShortTost("Camera Permission Granted")
             } else {
-                Toast.makeText(this.requireActivity(), "Camera Permission Denied", Toast.LENGTH_SHORT).show()
+                makeShortTost("Camera Permission Denied")
             }
         } else if (requestCode == 101) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this.requireActivity(), "Location Permission Granted", Toast.LENGTH_SHORT).show()
+                makeShortTost("Location Permission Granted")
             } else {
-                Toast.makeText(this.requireActivity(), "Location Permission Denied", Toast.LENGTH_SHORT).show()
+                makeShortTost("Location Permission Denied")
             }
         }
     }
