@@ -18,6 +18,11 @@ class ComplaintActivity : AppCompatActivity() {
             replaceFragment(ProfileFragment())
             bottomNavigationView.getMenu().getItem(0).setChecked(true)
         }
+        if(intent.hasExtra("toAddComplaint")){
+            println("add comp")
+            replaceFragment(AddComplaintFragment())
+            bottomNavigationView.getMenu().getItem(1).setChecked(true)
+        }
 
         bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
@@ -38,6 +43,12 @@ class ComplaintActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayout,fragment)
         fragmentTransaction.commit()
+
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
 
     }
 }

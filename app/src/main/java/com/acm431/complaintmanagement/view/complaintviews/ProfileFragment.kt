@@ -1,5 +1,6 @@
 package com.acm431.complaintmanagement.view.complaintviews
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.acm431.complaintmanagement.ComplaintActivity
 import com.acm431.complaintmanagement.R
 import com.acm431.complaintmanagement.adapter.ProfileComplaintsAdapter
 import com.acm431.complaintmanagement.database.GlobalValues
@@ -37,12 +39,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             tv_name_surname_profile.text = it
         })
         btn_report_problem.setOnClickListener {
-            //Navigate to addComplaint
-            requireFragmentManager()
-                .beginTransaction()
-                .replace(R.id.frameLayout, AddComplaintFragment())
-                .addToBackStack(null)
-                .commit()
+
+            val intent = Intent(requireContext(),ComplaintActivity::class.java)
+            intent.putExtra("toAddComplaint",1)
+            startActivity(intent)
+
         }
 
         observeLiveData()
@@ -64,4 +65,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
         })
     }
+
+
 }

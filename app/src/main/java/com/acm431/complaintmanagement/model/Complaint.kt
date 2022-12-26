@@ -10,5 +10,7 @@ data class Complaint(
     val date : String = Timestamp.now().toDate().toString(),
     val status: String= "",
     val urgency: String= "",
-    val userName: String = ""
+    val userName: String = "",
+    val solved : Int = 0,
+
 )

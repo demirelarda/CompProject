@@ -25,7 +25,7 @@ import java.time.LocalDateTime
 
 class AdminSolvedFragment : Fragment(R.layout.fragment_admin_solved) {
 
-    private var recyclerA = NotificationsAdapter()
+    private lateinit var recyclerA : NotificationsAdapter
     private lateinit var viewModel : AdminViewModel
 
 
@@ -40,20 +40,29 @@ class AdminSolvedFragment : Fragment(R.layout.fragment_admin_solved) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        recyclerA = NotificationsAdapter(this,false)
         rv_solved_complaints_notifications.layoutManager = LinearLayoutManager(requireContext())
         rv_solved_complaints_notifications.setHasFixedSize(true)
         rv_solved_complaints_notifications.adapter = recyclerA
 
-        //observeLiveData()
+
+        observeLiveData()
     }
 
     private fun observeLiveData() {
 
         viewModel.complaintList.observe(this.viewLifecycleOwner, Observer { myList ->
+
+            val tempArray = ArrayList<Complaint>()
+            for(i in myList){
+                if(i.solved == 1){
+                    tempArray.add(i)
+                }
+            }
             myList?.let {
                 tv_no_problems_msg_notifications_solved.visibility = View.GONE
                 rv_solved_complaints_notifications.visibility = View.VISIBLE
-                recyclerA.complaints= myList
+                recyclerA.complaints= tempArray
             }
 
             if (myList == null) {

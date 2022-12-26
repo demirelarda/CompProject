@@ -14,15 +14,27 @@ import com.acm431.complaintmanagement.BaseFragment
 import com.acm431.complaintmanagement.ComplaintActivity
 import com.acm431.complaintmanagement.R
 import com.acm431.complaintmanagement.viewmodel.AuthViewModel
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LogInFragment : BaseFragment() {
     private lateinit var viewModel: AuthViewModel
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+        if(auth.currentUser!=null){
+            /*
+            val intent = Intent(requireContext(), ComplaintActivity::class.java)
+            intent.putExtra("toProfile", 1)
+            startActivity(intent)
+            requireActivity().finish()
+
+             */
+
+        }
     }
 
     override fun onResume() {
@@ -64,6 +76,7 @@ class LogInFragment : BaseFragment() {
                     val intent = Intent(requireContext(), ComplaintActivity::class.java)
                     intent.putExtra("toProfile", 1)
                     startActivity(intent)
+                    requireActivity().finish()
                 }
             })
 
