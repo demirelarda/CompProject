@@ -11,12 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.acm431.complaintmanagement.R
 import com.acm431.complaintmanagement.adapter.ProfileComplaintsAdapter
 import com.acm431.complaintmanagement.database.GlobalValues
-import com.acm431.complaintmanagement.model.User
 import com.acm431.complaintmanagement.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
@@ -37,9 +33,18 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         rv_profile_complaints.layoutManager = LinearLayoutManager(requireContext())
         rv_profile_complaints.adapter = recyclerA
         rv_profile_complaints.setHasFixedSize(true)
-        GlobalValues.stringValue.observe(viewLifecycleOwner, Observer {
+        GlobalValues.userName.observe(viewLifecycleOwner, Observer {
             tv_name_surname_profile.text = it
         })
+        btn_report_problem.setOnClickListener {
+            //Navigate to addComplaint
+            requireFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frameLayout, AddComplaintFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
         observeLiveData()
 
     }

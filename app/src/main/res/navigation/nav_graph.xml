@@ -41,5 +41,12 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.acm431.complaintmanagement.view.complaintviews.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_addComplaintFragment"
+            app:destination="@id/addComplaintFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
 </navigation>

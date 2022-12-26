@@ -23,8 +23,6 @@ class AddComplaintViewModel : ViewModel() {
             .addOnFailureListener { exception ->
                 throw Exception(exception.localizedMessage)
             }
-
         database.collection("allComplaints").document(data.complaintID).set(data)
-
     }
 }
