@@ -5,7 +5,6 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
@@ -16,10 +15,6 @@ import com.acm431.complaintmanagement.R
 import com.acm431.complaintmanagement.database.GlobalValues
 import com.acm431.complaintmanagement.model.Complaint
 import com.acm431.complaintmanagement.viewmodel.AddComplaintViewModel
-import com.acm431.complaintmanagement.viewmodel.AuthViewModel
-import com.acm431.complaintmanagement.viewmodel.ProfileViewModel
-import com.google.firebase.auth.FirebaseAuth
-import java.time.LocalDateTime
 
 class AddComplaintFragment : Fragment(R.layout.fragment_add_complaint) {
     private lateinit var viewModel: AddComplaintViewModel
@@ -50,7 +45,7 @@ class AddComplaintFragment : Fragment(R.layout.fragment_add_complaint) {
 
 
         val exampleComplaint = Complaint(
-            userName = GlobalValues.stringValue.value.toString(),
+            userName = GlobalValues.userName.value.toString(),
             complaintID = "a",
             content = "rehwerh",
             imagePath = "a",

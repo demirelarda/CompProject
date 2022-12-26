@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -14,6 +15,7 @@ import kotlinx.coroutines.launch
 class SplashActivity : AppCompatActivity() {
 
     private val coroutineScope = CoroutineScope(Dispatchers.Default)
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +44,10 @@ class SplashActivity : AppCompatActivity() {
 
     private suspend fun wait() {
         delay(2000L)
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
+            val intent = Intent(this, ComplaintActivity::class.java)
+            startActivity(intent)
+            finish()
+
+
     }
 }

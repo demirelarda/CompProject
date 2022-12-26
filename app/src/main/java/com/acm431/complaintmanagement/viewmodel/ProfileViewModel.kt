@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.acm431.complaintmanagement.database.GlobalValues
 import com.acm431.complaintmanagement.model.Complaint
-import com.acm431.complaintmanagement.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -57,10 +56,17 @@ class ProfileViewModel : ViewModel() {
             .document(auth.currentUser!!.email.toString()).get().addOnSuccessListener {
                 if (it != null){
                     val value = it.getString("username").toString()
-                    GlobalValues.stringValue.value = value
-                    println(GlobalValues.stringValue)
+                    GlobalValues.userName.value = value
+                    println(GlobalValues.userName)
                 }
             }
+    }
+
+    fun logout() {
+        if (auth.currentUser != null)
+            auth.signOut()
+        else
+            throw Exception("You haven't logged in !")
     }
 
 }
