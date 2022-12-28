@@ -25,4 +25,10 @@
     <string name="have_no_problems">Henüz bir şikayetiniz yok.</string>
     <string name="please_wait">Lütfen Bekleyin</string>
     <string name="an_error_occured">Bir Hata Oluştu</string>
+    <string name="what_is_your_complaint">Şikayetiniz Nedir?</string>
+    <string name="enter_your_complaint_location">Şikayetin Konumunu Giriniz</string>
+    <string name="make_complaint">Şikayet Et</string>
+    <string name="permission_needed_for_gallery">Galeri İçin İzin Gerekli</string>
+    <string name="permission_denied">İzin Reddedildi</string>
+    <string name="give_permission">İzin Ver</string>
 </resources>

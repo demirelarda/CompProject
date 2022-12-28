@@ -26,13 +26,11 @@ class LogInFragment : BaseFragment() {
 
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
         if(auth.currentUser!=null){
-            /*
+
             val intent = Intent(requireContext(), ComplaintActivity::class.java)
             intent.putExtra("toProfile", 1)
             startActivity(intent)
             requireActivity().finish()
-
-             */
 
         }
     }

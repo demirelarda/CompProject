@@ -10,16 +10,19 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.acm431.complaintmanagement.ComplaintActivity
+import com.acm431.complaintmanagement.MainActivity
 import com.acm431.complaintmanagement.R
 import com.acm431.complaintmanagement.adapter.ProfileComplaintsAdapter
 import com.acm431.complaintmanagement.database.GlobalValues
 import com.acm431.complaintmanagement.viewmodel.ProfileViewModel
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private lateinit var viewModel: ProfileViewModel
     private var recyclerA = ProfileComplaintsAdapter()
+    private val auth = FirebaseAuth.getInstance()
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -27,6 +30,16 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        iv_log_out.setOnClickListener {
+            auth.signOut()
+            val intent = Intent(requireContext(),MainActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

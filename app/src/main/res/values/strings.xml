@@ -24,5 +24,11 @@
     <string name="have_no_problems">You Have No Problems Yet.</string>
     <string name="please_wait">Please Wait</string>
     <string name="an_error_occured">An Error Occured</string>
+    <string name="what_is_your_complaint">What is your complaint?</string>
+    <string name="enter_your_complaint_location">Enter Your Complaint Location</string>
+    <string name="make_complaint">MAKE COMPLAINT</string>
+    <string name="permission_needed_for_gallery">Permission Needed For Gallery</string>
+    <string name="give_permission">Give Permission</string>
+    <string name="permission_denied">Permission Denied</string>
 
 </resources>

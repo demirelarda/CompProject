@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.acm431.complaintmanagement.LoadGlide
 import com.acm431.complaintmanagement.R
 import com.acm431.complaintmanagement.model.Complaint
 import com.acm431.complaintmanagement.view.complaintviews.tabfragments.AdminActiveFragment
@@ -54,6 +55,7 @@ class NotificationsAdapter(val fragment: Fragment,val isAdmin: Boolean): Recycle
         holder.itemView.tv_user_name_surname_notifications_row.text = model.userName
         holder.itemView.iv_user_pp_notifications_row.setImageResource(R.drawable.user_image_placeholder)
         holder.itemView.iv_notifications_complaint_image_row.setImageResource(R.drawable.ic_baseline_photo_camera_24)
+        //LoadGlide(holder.itemView.context).loadComplaintImage(model.imagePath,holder.itemView.iv_notifications_complaint_image_row)
         holder.itemView.btn_solve.setOnClickListener {
             when(fragment){
                 is AdminActiveFragment ->{
