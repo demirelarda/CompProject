@@ -30,6 +30,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
 
+
+
     }
 
     override fun onResume() {

@@ -84,7 +84,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/make_complaint"
+        android:id="@+id/btn_make_complaint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/app_button_background"

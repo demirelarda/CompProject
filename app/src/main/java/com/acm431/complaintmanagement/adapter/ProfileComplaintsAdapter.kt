@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.acm431.complaintmanagement.LoadGlide
 import com.acm431.complaintmanagement.R
 import com.acm431.complaintmanagement.model.Complaint
+import kotlinx.android.synthetic.main.notifications_row.view.*
 import kotlinx.android.synthetic.main.profile_complaints_row.view.*
 
 class ProfileComplaintsAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -44,7 +46,7 @@ class ProfileComplaintsAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>(
         holder.itemView.tv_urgency_profile_row.text = model.urgency
         holder.itemView.tv_row_complaint_status.text = model.status //TODO : Change the background color according to the status
         holder.itemView.tv_address_date_profile_complaint_row.text = model.location+" - "+model.date
-        holder.itemView.iv_complaint_image_small_profile_row.setImageResource(R.drawable.ic_baseline_photo_camera_24) //TODO: USE AN IMAGE LOADER LIBRARY (GLIDE)
+        LoadGlide(holder.itemView.context).loadComplaintImage(model.imagePath,holder.itemView.iv_complaint_image_small_profile_row)
     }
 
     override fun getItemCount(): Int {

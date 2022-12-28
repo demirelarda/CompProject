@@ -65,6 +65,7 @@ class ProfileViewModel : ViewModel() {
     fun logout() {
         if (auth.currentUser != null)
             auth.signOut()
+
         else
             throw Exception("You haven't logged in !")
     }

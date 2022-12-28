@@ -55,11 +55,10 @@ class LogInFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        login_button.setOnClickListener {
 
+        login_button.setOnClickListener {
             val email = et_email.text.toString()
             val password = et_password.text.toString()
-
             if (email.isNotEmpty() && password.isNotEmpty())
                 viewModel.login(email, password)
             else
@@ -80,10 +79,10 @@ class LogInFragment : BaseFragment() {
 
             viewModel.loginLoading.observe(viewLifecycleOwner, Observer { loading->
                 if(loading){
-                    //showProgressBar(getString(R.string.please_wait))
+                    showProgressBar(getString(R.string.please_wait))
                 }
                 else{
-                    //hideProgressBar()
+                    hideProgressBar()
                 }
             })
 
@@ -94,5 +93,17 @@ class LogInFragment : BaseFragment() {
             })
         }
 
+        btn_forgot.setOnClickListener {
+            val email = et_email.text.toString()
+
+            if (email.isNotEmpty())
+                auth.sendPasswordResetEmail(email)
+            else
+                Toast.makeText(
+                    this.context,
+                    "Lütfen şifresini sıfırlamak istediğiniz e-maili girin",
+                    Toast.LENGTH_LONG
+                ).show()
+        }
     }
 }
