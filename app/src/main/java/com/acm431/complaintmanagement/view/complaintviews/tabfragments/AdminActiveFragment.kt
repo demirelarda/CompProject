@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,8 +15,6 @@ import com.acm431.complaintmanagement.adapter.NotificationsAdapter
 import com.acm431.complaintmanagement.database.Database
 import com.acm431.complaintmanagement.model.Complaint
 import com.acm431.complaintmanagement.viewmodel.AdminViewModel
-import com.acm431.complaintmanagement.viewmodel.AuthViewModel
-import com.acm431.complaintmanagement.viewmodel.ProfileViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_admin_active.*
 import kotlinx.android.synthetic.main.fragment_admin_solved.*

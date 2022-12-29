@@ -55,7 +55,7 @@ class NotificationsAdapter(val fragment: Fragment,val isAdmin: Boolean): Recycle
         holder.itemView.tv_user_name_surname_notifications_row.text = model.userName
         holder.itemView.iv_user_pp_notifications_row.setImageResource(R.drawable.user_image_placeholder)
         holder.itemView.iv_notifications_complaint_image_row.setImageResource(R.drawable.ic_baseline_photo_camera_24)
-        //LoadGlide(holder.itemView.context).loadComplaintImage(model.imagePath,holder.itemView.iv_notifications_complaint_image_row)
+        LoadGlide(holder.itemView.context).loadComplaintImage(model.imagePath,holder.itemView.iv_notifications_complaint_image_row)
         holder.itemView.btn_solve.setOnClickListener {
             when(fragment){
                 is AdminActiveFragment ->{

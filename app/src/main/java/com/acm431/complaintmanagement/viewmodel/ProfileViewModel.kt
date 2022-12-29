@@ -31,12 +31,10 @@ class ProfileViewModel : ViewModel() {
 
                     val allAnalysis = ArrayList<Complaint>()
                     val documents = value.documents
-                    println("query snapshot null değil")
-
                     documents.forEach {
                         val analyze = it.toObject(Complaint::class.java)
                         if (analyze != null) {
-                            println("documents snapshot null değil")
+
                             allAnalysis.add(analyze)
                         }
                     }
@@ -57,7 +55,6 @@ class ProfileViewModel : ViewModel() {
                 if (it != null){
                     val value = it.getString("username").toString()
                     GlobalValues.userName.value = value
-                    println(GlobalValues.userName)
                 }
             }
     }
@@ -65,6 +62,7 @@ class ProfileViewModel : ViewModel() {
     fun logout() {
         if (auth.currentUser != null)
             auth.signOut()
+
         else
             throw Exception("You haven't logged in !")
     }

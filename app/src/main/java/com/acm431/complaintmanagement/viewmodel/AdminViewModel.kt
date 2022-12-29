@@ -31,10 +31,10 @@ class AdminViewModel : ViewModel() {
                     }
                     complaintList.value = allComplaints
                 } else if (error != null) {
-                    println(error.localizedMessage)
+
                 }
             } catch (e: Exception) {
-                println(e.localizedMessage)
+
             }
         }
     }
