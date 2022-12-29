@@ -16,12 +16,13 @@ import com.acm431.complaintmanagement.adapter.ProfileComplaintsAdapter
 import com.acm431.complaintmanagement.database.GlobalValues
 import com.acm431.complaintmanagement.viewmodel.ProfileViewModel
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.fragment_add_complaint.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private lateinit var viewModel: ProfileViewModel
-    private var recyclerA = ProfileComplaintsAdapter()
+    private lateinit var recyclerA : ProfileComplaintsAdapter
     private val auth = FirebaseAuth.getInstance()
 
 
@@ -29,9 +30,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
-
-
-
     }
 
     override fun onResume() {
@@ -47,7 +45,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         rv_profile_complaints.layoutManager = LinearLayoutManager(requireContext())
+        recyclerA = ProfileComplaintsAdapter(requireContext())
         rv_profile_complaints.adapter = recyclerA
         rv_profile_complaints.setHasFixedSize(true)
         GlobalValues.userName.observe(viewLifecycleOwner, Observer {

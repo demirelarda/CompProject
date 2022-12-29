@@ -63,5 +63,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.gms:play-services-places:17.0.0'
+
 
 }
