@@ -26,7 +26,6 @@ class AuthViewModel : ViewModel() {
             loginResult.value = true
         }
             .addOnFailureListener {
-                println("error")
                 loginError.value = true
                 loginLoading.value = false
                 loginResult.value = false

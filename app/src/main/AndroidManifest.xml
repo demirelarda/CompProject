@@ -40,15 +40,11 @@
                 android:value="" />
         </activity>
 
-        <provider
-            android:authorities="com.acm431.complaintmanagement"
-            android:name="androidx.core.content.FileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/providerfile"/>
-        </provider>
+        <service
+            android:name=".ComplaintActivity"
+            android:foregroundServiceType="location" >
+
+    </service>
     </application>
 
 </manifest>
