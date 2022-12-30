@@ -40,7 +40,7 @@ class AdminSolvedFragment : Fragment(R.layout.fragment_admin_solved) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerA = NotificationsAdapter(this,false)
+        recyclerA = NotificationsAdapter(this,false,requireContext())
         rv_solved_complaints_notifications.layoutManager = LinearLayoutManager(requireContext())
         rv_solved_complaints_notifications.setHasFixedSize(true)
         rv_solved_complaints_notifications.adapter = recyclerA

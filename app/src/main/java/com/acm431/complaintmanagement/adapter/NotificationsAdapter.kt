@@ -1,5 +1,9 @@
 package com.acm431.complaintmanagement.adapter
 
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,10 +17,10 @@ import com.acm431.complaintmanagement.model.Complaint
 import com.acm431.complaintmanagement.view.complaintviews.tabfragments.AdminActiveFragment
 import com.acm431.complaintmanagement.view.complaintviews.tabfragments.AdminSolvedFragment
 import kotlinx.android.synthetic.main.notifications_row.view.*
+import kotlinx.android.synthetic.main.profile_complaints_row.view.*
 
 
-
-class NotificationsAdapter(val fragment: Fragment,val isAdmin: Boolean): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class NotificationsAdapter(val fragment: Fragment,val isAdmin: Boolean, val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class NotificationsViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
@@ -63,6 +67,9 @@ class NotificationsAdapter(val fragment: Fragment,val isAdmin: Boolean): Recycle
                 }
             }
         }
+        holder.itemView.tv_address_notifications_row.setOnClickListener {
+            openGoogleMap(model.latitude, model.longitude, context)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -70,5 +77,28 @@ class NotificationsAdapter(val fragment: Fragment,val isAdmin: Boolean): Recycle
     }
 
 
+    fun openGoogleMap(latitude: Double?, longitude: Double?, context: Context) {
+
+        // you need action, data and package name
+
+        val uri = Uri.parse("geo:$latitude,$longitude?z=15")
+        //create an intent
+        val mapIntent = Intent()
+
+        //add action & data
+        mapIntent.action = Intent.ACTION_VIEW
+        mapIntent.data = uri
+
+        //package name for google maps app
+        mapIntent.setPackage("com.google.android.apps.maps")
+        try {
+            context.startActivity(mapIntent)
+        } catch (e: ActivityNotFoundException) {
+
+            //if map app isn't resolved/installed catch error
+            e.printStackTrace()
+        }
+
+    }
 
 }

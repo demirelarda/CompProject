@@ -14,6 +14,7 @@ class AdminViewModel : ViewModel() {
     init {
         retrieveData()
     }
+
     private fun retrieveData() {
 
         collectionRef.addSnapshotListener { value, error ->

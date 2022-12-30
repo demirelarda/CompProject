@@ -60,9 +60,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             startActivity(intent)
 
         }
-
         observeLiveData()
-
     }
 
     private fun observeLiveData() {
@@ -80,6 +78,4 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
         })
     }
-
-
 }

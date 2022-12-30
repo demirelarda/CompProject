@@ -43,7 +43,7 @@ class AdminActiveFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerA = NotificationsAdapter(this,isAdmin)
+        recyclerA = NotificationsAdapter(this,isAdmin,requireContext())
         rv_active_complaints_notifications.layoutManager = LinearLayoutManager(requireContext())
         rv_active_complaints_notifications.setHasFixedSize(true)
         rv_active_complaints_notifications.adapter = recyclerA

@@ -9,18 +9,21 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class AuthViewModel : ViewModel() {
 
-    var loginResult = MutableLiveData<Boolean>()
-    val auth = FirebaseAuth.getInstance()
-    val db = FirebaseFirestore.getInstance()
-    val loginLoading = MutableLiveData<Boolean>()
-    val registerLoading = MutableLiveData<Boolean>()
-    val registerError = MutableLiveData<Boolean>()
-    val loginError = MutableLiveData<Boolean>()
-    val registrationSucces = MutableLiveData<Boolean>()
+    private val auth = FirebaseAuth.getInstance()
+    private val db = FirebaseFirestore.getInstance()
+
+    var loginResult         = MutableLiveData<Boolean>()
+    val loginLoading        = MutableLiveData<Boolean>()
+    val registerLoading     = MutableLiveData<Boolean>()
+    val registerError       = MutableLiveData<Boolean>()
+    val loginError          = MutableLiveData<Boolean>()
+    val registrationSucces  = MutableLiveData<Boolean>()
+    val errorMessage        = MutableLiveData<String>()
 
     fun login(email: String, password: String) {
 
         loginLoading.value = true
+
         auth.signInWithEmailAndPassword(email, password).addOnSuccessListener { result ->
             loginLoading.value = false
             loginResult.value = true
@@ -29,6 +32,7 @@ class AuthViewModel : ViewModel() {
                 loginError.value = true
                 loginLoading.value = false
                 loginResult.value = false
+                errorMessage.value = it.localizedMessage
             }
     }
 
@@ -39,6 +43,7 @@ class AuthViewModel : ViewModel() {
         auth.createUserWithEmailAndPassword(user.email, user.password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+
                     registrationSucces.value = true
                     registerLoading.value = false
 
@@ -52,6 +57,7 @@ class AuthViewModel : ViewModel() {
                 }
             }
             .addOnFailureListener {
+                errorMessage.value = it.localizedMessage
                 registerLoading.value = false
                 registerError.value = true
             }

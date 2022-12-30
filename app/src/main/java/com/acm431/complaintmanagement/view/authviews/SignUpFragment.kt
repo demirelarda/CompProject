@@ -17,13 +17,6 @@ import kotlinx.android.synthetic.main.fragment_signup.*
 class SignUpFragment : BaseFragment() {
     private lateinit var viewModel: AuthViewModel
 
-    private fun makeShortTost(message: String) {
-        Toast.makeText(
-            this.context,
-            message,
-            Toast.LENGTH_SHORT
-        ).show()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,36 +38,55 @@ class SignUpFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_signup, container, false)
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         register_button.setOnClickListener {
-            val username = et_username.text.toString()
-            val email = et_email.text.toString()
-            val password = et_password.text.toString()
-            val passAgain = et_password_again.text.toString()
-            val citizenID = et_citizen_id.text.toString()
-            val user = User(
-                username = username,
-                email = email,
-                password = password,
-                identityNumber = citizenID
-            )
+            registerBtn()
+        }
+    }
 
-            if (!(cb_terms_and_condition.isChecked && username.isEmpty() && email.isEmpty()//isChecked hata veriyor
-                        && password.isEmpty() && passAgain.isEmpty() && citizenID.isEmpty()))
-            {
-                viewModel.register(user)
-                if (viewModel.registrationSucces.value!!)
+    private fun makeShortTost(message: String) {
+        Toast.makeText(
+            this.context,
+            message,
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    private fun registerBtn() {
+        val username = et_username.text.toString()
+        val email = et_email.text.toString()
+        val password = et_password.text.toString()
+        val passAgain = et_password_again.text.toString()
+        val citizenID = et_citizen_id.text.toString()
+        val user = User(
+            username = username,
+            email = email,
+            password = password,
+            identityNumber = citizenID
+        )
+
+        if (username.isEmpty() && email.isEmpty()
+            && password.isEmpty() && passAgain.isEmpty() && citizenID.isEmpty())
+            makeShortTost("Lütfen boş bıraktığınız alan olmadığından emin olun")
+        else if (passAgain != password)
+            makeShortTost("Girdiğiniz şifreler uyuşmuyor")
+        else if (!cb_terms_and_condition.isChecked)
+            makeShortTost("Lütfen kullanım koşullarını kabul edin !")
+        else{
+            viewModel.register(user)
+            viewModel.registrationSucces.observe(viewLifecycleOwner) { registrationSuccess ->
+                if (registrationSuccess) {
                     makeShortTost("Hesabınız oluşturuldu !")
-            }
-            else if (passAgain != password)
-                makeShortTost("Girdiğiniz şifreler uyuşmuyor")
-            else
-                makeShortTost("Lütfen boş bıraktığınız alan olmadığından emin olun ve koşulları kabul edin")
+                }
 
+                else {
+                    viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+                        showErrorSnackBar(errorMessage,true)
+                    }
+                }
+            }
         }
 
         viewModel.registerLoading.observe(viewLifecycleOwner, Observer { loading ->
@@ -88,7 +100,7 @@ class SignUpFragment : BaseFragment() {
 
         viewModel.registerError.observe(viewLifecycleOwner, Observer { error ->
             if (error) {
-                showErrorSnackBar(getString(R.string.an_error_occured), true)
+                //showErrorSnackBar(getString(R.string.an_error_occured), true)
             }
         })
     }
