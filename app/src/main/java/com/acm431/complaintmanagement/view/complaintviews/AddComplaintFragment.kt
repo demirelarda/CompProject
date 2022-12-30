@@ -20,7 +20,9 @@ import android.os.Bundle
 import android.os.Environment
 import android.os.Looper
 import android.provider.MediaStore
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -29,7 +31,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import com.acm431.complaintmanagement.BaseFragment
 import com.acm431.complaintmanagement.LoadGlide
 import com.acm431.complaintmanagement.R
 import com.acm431.complaintmanagement.database.GlobalValues
@@ -44,8 +48,9 @@ import java.util.*
 import kotlin.collections.HashMap
 
 
-class AddComplaintFragment : Fragment(R.layout.fragment_add_complaint) {
+class AddComplaintFragment : BaseFragment() {
 
+    private var locationLoading = MutableLiveData<Boolean>()
     private val locationManager by lazy {
         requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager?
     }
@@ -81,7 +86,13 @@ class AddComplaintFragment : Fragment(R.layout.fragment_add_complaint) {
             Toast.LENGTH_SHORT
         ).show()
     }
-
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_add_complaint, container, false)
+    }
     override fun onResume() {
         super.onResume()
 
@@ -97,7 +108,7 @@ class AddComplaintFragment : Fragment(R.layout.fragment_add_complaint) {
         viewModel = ViewModelProvider(this)[AddComplaintViewModel::class.java]
 
 
-            requestLocationPermission()
+        requestLocationPermission()
 
         registerLauncher()
 
@@ -107,7 +118,13 @@ class AddComplaintFragment : Fragment(R.layout.fragment_add_complaint) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        locationLoading.observe(viewLifecycleOwner) {
+            if (it == true) {
+                showProgressBar("Konum alınıyor lütfen bekleyin")
+            }
+            else
+                hideProgressBar()
+        }
 
         btn_make_complaint.setOnClickListener {
             val givenAddress = et_complaint_location.text.toString()
@@ -117,8 +134,8 @@ class AddComplaintFragment : Fragment(R.layout.fragment_add_complaint) {
                 userName = GlobalValues.userName.value.toString(),
                 content = complaintContent,
                 location = complaintLocation ?: givenAddress,
-                status = "Ekipler Yönlendirildi",
-                urgency = "Acelesi yok",
+                status = "Solving",
+                urgency = "Not urgent",
                 latitude = latLongMap["latitude"],
                 longitude = latLongMap["longitude"],
             )
@@ -210,64 +227,66 @@ class AddComplaintFragment : Fragment(R.layout.fragment_add_complaint) {
             }
     }
 
-     private fun requestLocationPermission() : String {
-         GlobalScope.launch(){
+    private fun requestLocationPermission() {
 
-             when {
-                 ContextCompat.checkSelfPermission(
-                     requireContext(),
-                     Manifest.permission.ACCESS_COARSE_LOCATION
-                 ) == PackageManager.PERMISSION_GRANTED -> {
-                     locationManager!!.requestSingleUpdate(
-                         LocationManager.GPS_PROVIDER,
-                         object : LocationListener {
-                             override fun onLocationChanged(location: Location) {
+         when {
+             ContextCompat.checkSelfPermission(
+                 requireContext(),
+                 Manifest.permission.ACCESS_COARSE_LOCATION
+             ) == PackageManager.PERMISSION_GRANTED -> {
 
-                                 val geocoder = Geocoder(requireContext(), Locale.getDefault())
-                                 val addresses =
-                                     geocoder.getFromLocation(location!!.latitude, location.longitude, 1)
-                                 val address = addresses[0]
-                                 addressString = address.locality
-                                 latLongMap = hashMapOf()
-                                 val latitude = address.latitude
-                                 val longitude = address.longitude
-                                 latLongMap["latitude"] = latitude
-                                 latLongMap["longitude"] = longitude
-                                 println(addressString)
-                             }
+                 locationLoading.value = true
+                 locationManager!!.requestSingleUpdate(
+                     LocationManager.GPS_PROVIDER,
+                     object : LocationListener {
+                         override fun onLocationChanged(location: Location) {
+                             val geocoder = Geocoder(requireContext(), Locale.getDefault())
+                             val addresses =
+                                 geocoder.
+                                 getFromLocation(location!!.latitude, location.longitude, 1)
+                             val address = addresses[0]
+                             addressString = address.locality
+                             latLongMap = hashMapOf()
+                             val latitude = address.latitude
+                             val longitude = address.longitude
+                             latLongMap["latitude"] = latitude
+                             latLongMap["longitude"] = longitude
+                             println(addressString)
+                             locationLoading.value = false
+                         }
 
-                             override fun onStatusChanged(
-                                 provider: String?,
-                                 status: Int,
-                                 extras: Bundle?
-                             ) {
-                             }
+                         override fun onStatusChanged(
+                             provider: String?,
+                             status: Int,
+                             extras: Bundle?
+                         ) {
+                         }
 
-                             override fun onProviderEnabled(provider: String) {
-                                 println("gps enabled")
-                             }
+                         override fun onProviderEnabled(provider: String) {
+                             println("gps enabled")
+                         }
 
-                             override fun onProviderDisabled(provider: String) {
-                                 println("gps disabled")
+                         override fun onProviderDisabled(provider: String) {
+                             println("gps disabled")
 
-                             }
-                         },
-                         Looper.getMainLooper()
-                     )
-                 }
+                         }
 
-                 else -> {
-                     locationPermissionRequest.launch(
-                         arrayOf(
-                             Manifest.permission.ACCESS_FINE_LOCATION,
-                             Manifest.permission.ACCESS_COARSE_LOCATION
-                         )
-                     )
-                 }
+                     },
+                     Looper.getMainLooper()
+
+                 )
+
              }
 
+             else -> {
+                 locationPermissionRequest.launch(
+                     arrayOf(
+                         Manifest.permission.ACCESS_FINE_LOCATION,
+                         Manifest.permission.ACCESS_COARSE_LOCATION
+                     )
+                 )
+             }
          }
-        return "location"
     }
 
 

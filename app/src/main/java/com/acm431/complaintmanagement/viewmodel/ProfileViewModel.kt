@@ -17,12 +17,13 @@ class ProfileViewModel : ViewModel() {
         .collection("complaints")
 
     val list = MutableLiveData<ArrayList<Complaint>>()
-    var currentUser = ""
+
 
     init {
         retrieveData()
         getUser()
     }
+
     private fun retrieveData() {
 
         collectionRef.addSnapshotListener { value, error ->
@@ -58,13 +59,4 @@ class ProfileViewModel : ViewModel() {
                 }
             }
     }
-
-    fun logout() {
-        if (auth.currentUser != null)
-            auth.signOut()
-
-        else
-            throw Exception("You haven't logged in !")
-    }
-
 }

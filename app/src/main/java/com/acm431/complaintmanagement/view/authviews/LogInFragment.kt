@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -55,55 +54,65 @@ class LogInFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         login_button.setOnClickListener {
-            val email = et_email.text.toString()
-            val password = et_password.text.toString()
-            if (email.isNotEmpty() && password.isNotEmpty())
-                viewModel.login(email, password)
-            else
-                Toast.makeText(
-                    this.context,
-                    "Lütfen email ve password alanlarını boş bırakmayın",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-            viewModel.loginResult.observe(viewLifecycleOwner, Observer { result ->
-                if (result) {
-                    val intent = Intent(requireContext(), ComplaintActivity::class.java)
-                    intent.putExtra("toProfile", 1)
-                    startActivity(intent)
-                    requireActivity().finish()
-                }
-            })
-
-            viewModel.loginLoading.observe(viewLifecycleOwner, Observer { loading->
-                if(loading){
-                    showProgressBar(getString(R.string.please_wait))
-                }
-                else{
-                    hideProgressBar()
-                }
-            })
-
-            viewModel.loginError.observe(viewLifecycleOwner, Observer { error->
-                if(error){
-                    showErrorSnackBar(getString(R.string.an_error_occured),true)
-                }
-            })
+            loginBtn()
         }
 
         btn_forgot.setOnClickListener {
-            val email = et_email.text.toString()
-
-            if (email.isNotEmpty())
-                auth.sendPasswordResetEmail(email)
-            else
-                Toast.makeText(
-                    this.context,
-                    "Lütfen şifresini sıfırlamak istediğiniz e-maili girin",
-                    Toast.LENGTH_LONG
-                ).show()
+            forgotBtn()
         }
+    }
+
+    private fun forgotBtn() {
+        val email = et_email.text.toString()
+
+        if (email.isNotEmpty())
+            auth.sendPasswordResetEmail(email)
+        else
+            Toast.makeText(
+                this.context,
+                "Lütfen şifresini sıfırlamak istediğiniz e-maili girin",
+                Toast.LENGTH_LONG
+            ).show()
+    }
+
+    private fun loginBtn() {
+
+        val email = et_email.text.toString()
+        val password = et_password.text.toString()
+        if (email.isNotEmpty() && password.isNotEmpty())
+            viewModel.login(email, password)
+        else
+            Toast.makeText(
+                this.context,
+                "Lütfen email ve password alanlarını boş bırakmayın",
+                Toast.LENGTH_SHORT
+            ).show()
+
+        viewModel.loginResult.observe(viewLifecycleOwner, Observer { result ->
+            if (result) {
+                val intent = Intent(requireContext(), ComplaintActivity::class.java)
+                intent.putExtra("toProfile", 1)
+                startActivity(intent)
+                requireActivity().finish()
+            }
+        })
+
+        viewModel.loginLoading.observe(viewLifecycleOwner, Observer { loading->
+            if(loading){
+                showProgressBar(getString(R.string.please_wait))
+            }
+            else{
+                hideProgressBar()
+            }
+        })
+
+        viewModel.loginError.observe(viewLifecycleOwner, Observer { error->
+            if(error){
+                viewModel.errorMessage.observe(viewLifecycleOwner) {
+                    showErrorSnackBar(it,true)
+                }
+            }
+        })
     }
 }
