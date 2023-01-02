@@ -35,6 +35,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.acm431.complaintmanagement.BaseFragment
 import com.acm431.complaintmanagement.LoadGlide
+import com.acm431.complaintmanagement.MainActivity
 import com.acm431.complaintmanagement.R
 import com.acm431.complaintmanagement.database.GlobalValues
 import com.acm431.complaintmanagement.model.Complaint
@@ -60,6 +61,7 @@ class AddComplaintFragment : BaseFragment() {
     private var selectedPicture: Uri? = null
     private var addressString: String? = null
     private lateinit var latLongMap : HashMap<String, Double>
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
 
     private val locationPermissionRequest = registerForActivityResult(
@@ -117,6 +119,9 @@ class AddComplaintFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        et_complaint_location.visibility = View.GONE
+        til_location.visibility = View.GONE
+        runWait()
 
         locationLoading.observe(viewLifecycleOwner) {
             if (it == true) {
@@ -142,6 +147,20 @@ class AddComplaintFragment : BaseFragment() {
             viewModel.saveImageToStorage(selectedPicture!!, complaint)
 
         }
+    }
+
+    private fun runWait() {
+        coroutineScope.launch {
+            wait()
+        }
+    }
+
+    private suspend fun wait() {
+        delay(10000L)
+        hideProgressBar()
+        showErrorSnackBar(getString(R.string.location_not_found),true)
+        et_complaint_location.visibility = View.VISIBLE
+        til_location.visibility = View.VISIBLE
     }
 
 

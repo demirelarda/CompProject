@@ -1,5 +1,6 @@
 package com.acm431.complaintmanagement.view.authviews
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.acm431.complaintmanagement.BaseFragment
+import com.acm431.complaintmanagement.MainActivity
 import com.acm431.complaintmanagement.R
 import com.acm431.complaintmanagement.model.User
 import com.acm431.complaintmanagement.viewmodel.AuthViewModel
@@ -79,7 +81,12 @@ class SignUpFragment : BaseFragment() {
             viewModel.registrationSucces.observe(viewLifecycleOwner) { registrationSuccess ->
                 if (registrationSuccess) {
                     makeShortTost("Hesabınız oluşturuldu !")
+
+                    val intent = Intent(requireContext(),MainActivity::class.java)
+                    startActivity(intent)
+                    requireActivity().finish()
                 }
+
 
                 else {
                     viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->

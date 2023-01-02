@@ -77,7 +77,7 @@ class LogInFragment : BaseFragment() {
     }
 
     private fun loginBtn() {
-
+        showProgressBar(getString(R.string.please_wait))
         val email = et_email.text.toString()
         val password = et_password.text.toString()
         if (email.isNotEmpty() && password.isNotEmpty())
@@ -96,6 +96,9 @@ class LogInFragment : BaseFragment() {
                 startActivity(intent)
                 requireActivity().finish()
             }
+            else{
+                //hideProgressBar()
+            }
         })
 
         viewModel.loginLoading.observe(viewLifecycleOwner, Observer { loading->
@@ -103,6 +106,7 @@ class LogInFragment : BaseFragment() {
                 showProgressBar(getString(R.string.please_wait))
             }
             else{
+                println("loading stopped")
                 hideProgressBar()
             }
         })

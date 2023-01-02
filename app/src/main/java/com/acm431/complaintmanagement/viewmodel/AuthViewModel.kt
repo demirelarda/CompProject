@@ -22,17 +22,18 @@ class AuthViewModel : ViewModel() {
 
     fun login(email: String, password: String) {
 
-        loginLoading.value = true
+        //loginLoading.value = true
 
         auth.signInWithEmailAndPassword(email, password).addOnSuccessListener { result ->
             loginLoading.value = false
             loginResult.value = true
         }
             .addOnFailureListener {
+                println("login failed")
                 loginError.value = true
-                loginLoading.value = false
                 loginResult.value = false
                 errorMessage.value = it.localizedMessage
+                loginLoading.value = false
             }
     }
 

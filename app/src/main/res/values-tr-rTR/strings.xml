@@ -31,4 +31,5 @@
     <string name="permission_needed_for_gallery">Galeri İçin İzin Gerekli</string>
     <string name="permission_denied">İzin Reddedildi</string>
     <string name="give_permission">İzin Ver</string>
+    <string name="location_not_found">Konum Bulunamadı, Lütfen Manuel Olarak Giriniz.</string>
 </resources>
