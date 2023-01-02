@@ -81,13 +81,6 @@ class AddComplaintFragment : BaseFragment() {
     }
 
 
-    fun makeShortTost(message: String) {
-        Toast.makeText(
-            this.context,
-            message,
-            Toast.LENGTH_SHORT
-        ).show()
-    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -158,9 +151,12 @@ class AddComplaintFragment : BaseFragment() {
     private suspend fun wait() {
         delay(10000L)
         hideProgressBar()
-        showErrorSnackBar(getString(R.string.location_not_found),true)
-        et_complaint_location.visibility = View.VISIBLE
-        til_location.visibility = View.VISIBLE
+        if(addressString == null){
+            showErrorSnackBar(getString(R.string.location_not_found),true)
+            et_complaint_location.visibility = View.VISIBLE
+            til_location.visibility = View.VISIBLE
+        }
+
     }
 
 
